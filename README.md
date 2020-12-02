@@ -30,14 +30,14 @@ If you are not using maven or gradle, you can use the jar file [here](soon)
 
 ## <a name="Gradles"></a>Gradle
 ```
-allprojects {
-	repositories {
-		...
-		maven { url 'https://jitpack.io' }
+	allprojects {
+		repositories {
+			...
+			maven { url 'https://jitpack.io' }
+		}
 	}
-}
 
-dependencies {
+	dependencies {
 	        implementation 'com.github.Baptisteee:Charlotte:Tag'
-}
+	}
 ```
