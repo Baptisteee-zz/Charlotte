@@ -24,7 +24,7 @@ If you are not using maven or gradle, you can use the jar file [here](https://gi
 	<dependency>
 	    <groupId>com.github.Baptisteee</groupId>
 	    <artifactId>Charlotte</artifactId>
-	    <version>Tag</version>
+	    <version>0.1</version>
 	</dependency>
 ```
 
@@ -38,6 +38,6 @@ If you are not using maven or gradle, you can use the jar file [here](https://gi
 	}
 
 	dependencies {
-	        implementation 'com.github.Baptisteee:Charlotte:Tag'
+	        implementation 'com.github.Baptisteee:Charlotte:0.1'
 	}
 ```
