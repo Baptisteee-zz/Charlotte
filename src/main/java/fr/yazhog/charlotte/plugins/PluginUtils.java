@@ -24,6 +24,7 @@ public class PluginUtils {
 
     public void loadPlugins() throws ClassNotFoundException, IOException, IllegalAccessException, InstantiationException, URISyntaxException {
         File pFile = new File(new File(Charlotte.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath()).getParent() + "/plugins/");
+        if(!pFile.exists()) pFile.mkdir();
         for (File file : pFile.listFiles()) {
             if (!file.getName().endsWith(".jar")) continue;
             System.out.println("Loading " + file.getName() + "...");

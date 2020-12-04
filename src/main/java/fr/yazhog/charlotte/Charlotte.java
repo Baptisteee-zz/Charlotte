@@ -5,8 +5,8 @@ import fr.yazhog.charlotte.commands.ICommand;
 import fr.yazhog.charlotte.file.FileUtils;
 import fr.yazhog.charlotte.messages.IMessage;
 import fr.yazhog.charlotte.messages.IMessageListener;
-import fr.yazhog.charlotte.emotes.EmoteListener;
-import fr.yazhog.charlotte.emotes.IEmote;
+import fr.yazhog.charlotte.reaction.ReactionListener;
+import fr.yazhog.charlotte.reaction.IReaction;
 import fr.yazhog.charlotte.plugins.Plugin;
 import fr.yazhog.charlotte.plugins.PluginUtils;
 import net.dv8tion.jda.api.JDA;
@@ -19,7 +19,7 @@ import java.util.*;
 
 public class Charlotte {
 
-    private List<IEmote> emoteList = new ArrayList<>();
+    private List<IReaction> emoteList = new ArrayList<>();
     private JDA jda;
     private ArrayList<ICommand> commands = new ArrayList<>();
     private List<IMessage> messageList = new ArrayList<>();
@@ -38,7 +38,7 @@ public class Charlotte {
         fileUtils.loadFile();
         try {
             jda = JDABuilder.createDefault(fileUtils.getConfig().getString("token")).addEventListeners(
-                    new IMessageListener(this), new EmoteListener(this), new CommandListener(this)).build();
+                    new IMessageListener(this), new ReactionListener(this), new CommandListener(this)).build();
         } catch (LoginException e) {
             e.printStackTrace();
             System.exit(0);
@@ -71,7 +71,7 @@ public class Charlotte {
         return fileUtils;
     }
 
-    public List<IEmote> getEmoteList() {
+    public List<IReaction> getEmoteList() {
         return emoteList;
     }
 

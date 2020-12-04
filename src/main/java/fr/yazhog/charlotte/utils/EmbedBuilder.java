@@ -8,6 +8,11 @@ import java.util.List;
 
 public class EmbedBuilder {
 
+    /**
+     * Same as the original embed builder but you can't put + 2000 characters in the descrptions.
+     * Witch prevent from having exceptions because you can't have + 2048 characters in a embed description
+     */
+
     private final net.dv8tion.jda.api.EmbedBuilder embedBuilder;
 
     public EmbedBuilder() {

@@ -27,7 +27,7 @@ public class CommandListener implements EventListener {
 
     public void onMessageRecieved(MessageReceivedEvent event) {
         if (event.getChannelType() != ChannelType.TEXT) return;
-        if (event.getMessage().getContentDisplay().startsWith(charlotte.getFileUtils().getConfig().getString("prefix")) && event.getAuthor().getId() != event.getJDA().getSelfUser().getId()) {
+        if (event.getMessage().getContentDisplay().startsWith(charlotte.getFileUtils().getConfig().getString("prefix")) && !event.getAuthor().getId().equals(event.getJDA().getSelfUser().getId())) {
             commandHandler.handleCommand(event);
         }
     }

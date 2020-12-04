@@ -1,4 +1,4 @@
-package fr.yazhog.charlotte.emotes;
+package fr.yazhog.charlotte.reaction;
 
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Member;
@@ -7,11 +7,11 @@ import net.dv8tion.jda.api.events.message.react.MessageReactionAddEvent;
 
 import java.awt.*;
 
-public abstract class IEmote {
+public abstract class IReaction {
 
     private String messageID;
 
-    public IEmote(String messageID) {
+    public IReaction(String messageID) {
         this.messageID = messageID;
     }
 

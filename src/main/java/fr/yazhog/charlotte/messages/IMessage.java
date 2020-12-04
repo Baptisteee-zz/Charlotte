@@ -9,16 +9,21 @@ import java.awt.*;
 
 public abstract class IMessage {
 
-    private String userID;
+    private String userID, channelID;
 
-    public IMessage(String userID) {
+    public IMessage(String userID, String channelID) {
         this.userID = userID;
+        this.channelID = channelID;
     }
 
     public abstract void action(MessageReceivedEvent event, User user, Member member);
 
     public String getUserID() {
         return userID;
+    }
+
+    public String getChannelID() {
+        return channelID;
     }
 
     public EmbedBuilder getError(String error) {

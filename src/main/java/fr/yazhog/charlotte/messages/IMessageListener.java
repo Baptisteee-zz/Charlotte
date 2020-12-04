@@ -27,9 +27,9 @@ public class IMessageListener implements EventListener {
     private void messageReceived(MessageReceivedEvent event) {
         if (event.getAuthor().getId().equalsIgnoreCase(event.getJDA().getSelfUser().getId())) return;
         ArrayList<IMessage> messages = new ArrayList<>(charlotte.getMessageList());
-        if (event.getChannelType() == ChannelType.PRIVATE) {
+        if (event.getChannelType() == ChannelType.TEXT) {
             for (IMessage iMessage : messages) {
-                if (event.getAuthor().getId().equalsIgnoreCase(iMessage.getUserID())) {
+                if (event.getAuthor().getId().equalsIgnoreCase(iMessage.getUserID()) && event.getTextChannel().getId().equalsIgnoreCase(iMessage.getChannelID())) {
                     iMessage.action(event, event.getAuthor(), event.getMember());
                 }
             }
