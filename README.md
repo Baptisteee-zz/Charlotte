@@ -10,7 +10,7 @@ Charlotte is a librarie made in java in order to make your life easier when you'
 * Baptiste
 
 # <a name="install-charlotte"></a>Install Charlotte
-If you are not using maven or gradle, you can use the jar file [here](https://github.com/Baptisteee/Charlotte/releases/download/0.1/Charlotte-1.0-SNAPSHOT.jar)
+If you are not using maven or gradle, you can download the jar file [here](https://github.com/Baptisteee/Charlotte/releases/download/0.1/Charlotte-1.0-SNAPSHOT.jar)
 
 ## <a name="maven"></a>Maven
 ```
