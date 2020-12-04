@@ -5,6 +5,7 @@ Charlotte is a librarie made in java in order to make your life easier when you'
 # Summary
 * [Contributors](#contributors)
 * [Install Charlotte](#install-charlotte)
+* [Use Charlotte](#use-charlotte)
 
 # <a name="contributors"></a>Contributors
 * Baptiste
@@ -28,7 +29,7 @@ If you are not using maven or gradle, you can use the jar file [here](https://gi
 	</dependency>
 ```
 
-## <a name="Gradles"></a>Gradle
+## <a name="gradle"></a>Gradle
 ```
 	allprojects {
 		repositories {
