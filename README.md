@@ -5,7 +5,6 @@ Charlotte is a librarie made in java in order to make your life easier when you'
 # Summary
 * [Contributors](#contributors)
 * [Install Charlotte](#install-charlotte)
-* [Use Charlotte](#use-charlotte)
 
 # <a name="contributors"></a>Contributors
 * Baptiste
