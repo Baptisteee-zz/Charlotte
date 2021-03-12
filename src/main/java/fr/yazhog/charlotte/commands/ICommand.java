@@ -15,13 +15,11 @@ public abstract class ICommand {
 
     private Permission perms;
     private String command;
-    private boolean show;
     private List<ISubCommand> subCommands = new ArrayList<>();
 
-    public ICommand(String command, Permission perms, boolean show) {
+    public ICommand(String command, Permission perms) {
         this.perms = perms;
         this.command = command;
-        this.show = show;
     }
 
     public abstract void action(MessageReceivedEvent event, String[] args, User user, Member member);
@@ -54,10 +52,6 @@ public abstract class ICommand {
 
     public EmbedBuilder getError(String error) {
         return new EmbedBuilder().setColor(Color.RED).setDescription(error);
-    }
-
-    public boolean isShow() {
-        return show;
     }
 
 }
