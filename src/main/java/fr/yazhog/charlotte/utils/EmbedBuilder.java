@@ -1,16 +1,15 @@
 package fr.yazhog.charlotte.utils;
 
-import net.dv8tion.jda.api.entities.MessageEmbed;
-
 import java.awt.*;
 import java.time.temporal.TemporalAccessor;
 import java.util.List;
+import net.dv8tion.jda.api.entities.MessageEmbed;
 
 public class EmbedBuilder {
 
     /**
-     * Same as the original embed builder but you can't put + 2000 characters in the descrptions.
-     * Witch prevent from having exceptions because you can't have + 2048 characters in a embed description
+     * Same as the original embed builder but you can't put + 2000 characters in the descriptions.
+     * Witch prevent from having exceptions because you can't have + 2048 characters in an embed description
      */
 
     private final net.dv8tion.jda.api.EmbedBuilder embedBuilder;
@@ -111,15 +110,16 @@ public class EmbedBuilder {
 
     public EmbedBuilder appendDescription(String description) {
         if ((embedBuilder.getDescriptionBuilder().length() + description.length()) > 2000) {
-            description = embedBuilder.getDescriptionBuilder().toString() + " " + description;
+            description = embedBuilder.getDescriptionBuilder() + " " + description;
             description = description.substring(0, 2000) + "...";
-        } else description = embedBuilder.getDescriptionBuilder().toString() + " " + description;
+        }
+        else description = embedBuilder.getDescriptionBuilder() + " " + description;
         setDescription(description);
         return this;
     }
 
-    public EmbedBuilder setFooter(String footer, String avatarurl) {
-        embedBuilder.setFooter(footer, avatarurl);
+    public EmbedBuilder setFooter(String footer, String avatarUrl) {
+        embedBuilder.setFooter(footer, avatarUrl);
         return this;
     }
 

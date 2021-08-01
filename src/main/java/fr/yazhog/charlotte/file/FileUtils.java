@@ -1,9 +1,8 @@
 package fr.yazhog.charlotte.file;
 
+import java.io.IOException;
 import org.simpleyaml.configuration.file.YamlFile;
 import org.simpleyaml.exceptions.InvalidConfigurationException;
-
-import java.io.IOException;
 
 public class FileUtils {
 
@@ -17,13 +16,16 @@ public class FileUtils {
                 yamlFile.set("token", "insert token here");
                 yamlFile.set("prefix", "c!");
                 yamlFile.save();
-            } catch (IOException e) {
+            }
+            catch (IOException e) {
                 e.printStackTrace();
             }
-        } else {
+        }
+        else {
             try {
                 yamlFile.load();
-            } catch (InvalidConfigurationException | IOException e) {
+            }
+            catch (InvalidConfigurationException | IOException e) {
                 e.printStackTrace();
             }
         }

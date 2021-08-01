@@ -5,62 +5,61 @@ import fr.yazhog.charlotte.commands.ICommand;
 import fr.yazhog.charlotte.file.FileUtils;
 import fr.yazhog.charlotte.messages.IMessage;
 import fr.yazhog.charlotte.messages.IMessageListener;
-import fr.yazhog.charlotte.reaction.ReactionListener;
-import fr.yazhog.charlotte.reaction.IReaction;
 import fr.yazhog.charlotte.plugins.Plugin;
-import fr.yazhog.charlotte.plugins.PluginUtils;
+import fr.yazhog.charlotte.plugins.PluginController;
+import fr.yazhog.charlotte.reaction.IReaction;
+import fr.yazhog.charlotte.reaction.ReactionListener;
+import java.io.File;
+import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.List;
+import javax.security.auth.login.LoginException;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 
-import javax.security.auth.login.LoginException;
-import java.io.*;
-import java.net.URISyntaxException;
-import java.util.*;
-
 public class Charlotte {
 
-    private List<IReaction> emoteList = new ArrayList<>();
-    private JDA jda;
-    private ArrayList<ICommand> commands = new ArrayList<>();
-    private List<IMessage> messageList = new ArrayList<>();
-    private List<Plugin> plugins = new ArrayList<>();
-    private final long startedTime = System.currentTimeMillis();;
-    private PluginUtils pluginUtils;
+    private final long startedTime = System.currentTimeMillis();
     private final FileUtils fileUtils = new FileUtils();
+    private final List<IReaction> emoteList = new ArrayList<>();
 
-    public static void main(String[] args) {
-        Charlotte charlotte = new Charlotte();
-        charlotte.start();
-    }
+    private final List<ICommand> commands = new ArrayList<>();
+    private final List<IMessage> messageList = new ArrayList<>();
+    private final List<Plugin> plugins = new ArrayList<>();
+
+    private PluginController pluginController;
+    private JDA jda;
 
     public void start() {
-        pluginUtils = new PluginUtils(this);
+        pluginController = new PluginController(this);
         fileUtils.loadFile();
         try {
-            jda = JDABuilder.createDefault(fileUtils.getConfig().getString("token")).addEventListeners(
-                    new IMessageListener(this), new ReactionListener(this), new CommandListener(this)).build();
-        } catch (LoginException e) {
-            e.printStackTrace();
-            System.exit(0);
+            jda = JDABuilder
+                    .createDefault(fileUtils.getConfig().getString("token"))
+                    .addEventListeners(
+                            new IMessageListener(this),
+                            new ReactionListener(this),
+                            new CommandListener(this))
+                    .build();
         }
-        try {
-            pluginUtils.loadPlugins();
-        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | IOException | URISyntaxException e) {
+        catch (LoginException e) {
             e.printStackTrace();
+            return;
         }
+        pluginController.loadPlugins();
     }
 
     public JDA getJda() {
         return jda;
     }
 
-    public ArrayList<ICommand> getCommands() {
+    public List<ICommand> getCommands() {
         return commands;
     }
 
     public Plugin getPluginByName(String name) {
         for (Plugin plugin : plugins) {
-            if (plugin.getName().equalsIgnoreCase(name)) {
+            if (plugin.getPluginInfo().getPluginName().equalsIgnoreCase(name)) {
                 return plugin;
             }
         }
@@ -87,7 +86,25 @@ public class Charlotte {
         return startedTime;
     }
 
-    public PluginUtils getPluginUtils() {
-        return pluginUtils;
+    public PluginController getPluginUtils() {
+        return pluginController;
+    }
+
+
+
+    public static File getJarLocation() {
+        try {
+            return new File(
+                Charlotte.class
+                        .getProtectionDomain()
+                        .getCodeSource()
+                        .getLocation()
+                        .toURI()
+                        .getPath()
+            );
+        }
+        catch (URISyntaxException ex) {
+            throw new IllegalStateException("Could not resolve jar location", ex);
+        }
     }
 }

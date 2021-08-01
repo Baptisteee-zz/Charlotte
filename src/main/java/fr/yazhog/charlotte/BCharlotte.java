@@ -6,8 +6,7 @@ public abstract class BCharlotte {
 
     private final Charlotte charlotte;
 
-    public BCharlotte(Charlotte charlotte)
-    {
+    protected BCharlotte(Charlotte charlotte) {
         this.charlotte = charlotte;
     }
 

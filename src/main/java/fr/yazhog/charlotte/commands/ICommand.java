@@ -1,23 +1,22 @@
 package fr.yazhog.charlotte.commands;
 
 import fr.yazhog.charlotte.utils.EmbedBuilder;
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
-import java.awt.*;
-import java.util.ArrayList;
-import java.util.List;
-
 public abstract class ICommand {
 
-    private Permission perms;
-    private String command;
-    private List<ISubCommand> subCommands = new ArrayList<>();
+    private final Permission perms;
+    private final String command;
+    private final List<ISubCommand> subCommands = new ArrayList<>();
 
-    public ICommand(String command, Permission perms) {
+    protected ICommand(String command, Permission perms) {
         this.perms = perms;
         this.command = command;
     }

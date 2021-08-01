@@ -1,17 +1,17 @@
 package fr.yazhog.charlotte.messages;
 
 import fr.yazhog.charlotte.Charlotte;
+import java.util.ArrayList;
+import java.util.List;
 import net.dv8tion.jda.api.entities.ChannelType;
 import net.dv8tion.jda.api.events.GenericEvent;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.EventListener;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
-
 public class IMessageListener implements EventListener {
 
-    private Charlotte charlotte;
+    private final Charlotte charlotte;
 
     public IMessageListener(Charlotte charlotte) {
         this.charlotte = charlotte;
@@ -26,10 +26,11 @@ public class IMessageListener implements EventListener {
 
     private void messageReceived(MessageReceivedEvent event) {
         if (event.getAuthor().getId().equalsIgnoreCase(event.getJDA().getSelfUser().getId())) return;
-        ArrayList<IMessage> messages = new ArrayList<>(charlotte.getMessageList());
+        List<IMessage> messages = charlotte.getMessageList();
         if (event.getChannelType() == ChannelType.TEXT) {
             for (IMessage iMessage : messages) {
-                if (event.getAuthor().getId().equalsIgnoreCase(iMessage.getUserID()) && event.getTextChannel().getId().equalsIgnoreCase(iMessage.getChannelID())) {
+                if (event.getAuthor().getId().equalsIgnoreCase(iMessage.getUserID()) && event.getTextChannel().getId()
+                        .equalsIgnoreCase(iMessage.getChannelID())) {
                     iMessage.action(event, event.getAuthor(), event.getMember());
                 }
             }

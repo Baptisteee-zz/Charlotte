@@ -1,17 +1,16 @@
 package fr.yazhog.charlotte.reaction;
 
+import java.awt.*;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.events.message.react.MessageReactionAddEvent;
 
-import java.awt.*;
-
 public abstract class IReaction {
 
-    private String messageID;
+    private final String messageID;
 
-    public IReaction(String messageID) {
+    protected IReaction(String messageID) {
         this.messageID = messageID;
     }
 

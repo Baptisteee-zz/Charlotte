@@ -1,17 +1,17 @@
 package fr.yazhog.charlotte.messages;
 
+import java.awt.*;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
-import java.awt.*;
-
 public abstract class IMessage {
 
-    private String userID, channelID;
+    private final String userID;
+    private final String channelID;
 
-    public IMessage(String userID, String channelID) {
+    protected IMessage(String userID, String channelID) {
         this.userID = userID;
         this.channelID = channelID;
     }

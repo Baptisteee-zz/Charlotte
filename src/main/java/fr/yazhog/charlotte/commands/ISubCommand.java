@@ -1,18 +1,17 @@
 package fr.yazhog.charlotte.commands;
 
 import fr.yazhog.charlotte.utils.EmbedBuilder;
+import java.awt.*;
+import java.util.List;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
-import java.awt.*;
-import java.util.List;
-
 public abstract class ISubCommand {
 
-    private String name;
+    private final String name;
 
-    public ISubCommand(String name) {
+    protected ISubCommand(String name) {
         this.name = name;
     }
 
