@@ -3,9 +3,11 @@ package fr.yazhog.charlotte.commands;
 import fr.yazhog.charlotte.utils.EmbedBuilder;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.Member;
+import net.dv8tion.jda.api.entities.MessageEmbed;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
+import net.dv8tion.jda.api.requests.restaction.MessageAction;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -15,6 +17,7 @@ public abstract class ICommand {
 
     private Permission perms;
     private String command;
+    private String description = "Aucune description";
     private List<ISubCommand> subCommands = new ArrayList<>();
 
     public ICommand(String command, Permission perms) {
@@ -30,6 +33,15 @@ public abstract class ICommand {
 
     public Permission getPerms() {
         return perms;
+    }
+
+    public ICommand setDescription(String description) {
+        this.description = description;
+        return this;
+    }
+
+    public String getDescription() {
+        return description;
     }
 
     public String getCommand() {
@@ -50,8 +62,12 @@ public abstract class ICommand {
         return stringBuilder;
     }
 
-    public EmbedBuilder getError(String error) {
-        return new EmbedBuilder().setColor(Color.RED).setDescription(error);
+    public MessageEmbed embedBuilder(Color color, String text){
+        return new EmbedBuilder().setColor(Color.BLACK).setDescription(text).build();
+    }
+
+    public MessageEmbed getError(String error) {
+        return new EmbedBuilder().setColor(Color.RED).setDescription(error).build();
     }
 
 }

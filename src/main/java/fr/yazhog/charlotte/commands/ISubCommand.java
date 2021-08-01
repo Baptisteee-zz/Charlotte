@@ -11,6 +11,7 @@ import java.util.List;
 public abstract class ISubCommand {
 
     private String name;
+    private String description = "Aucune description";
 
     public ISubCommand(String name) {
         this.name = name;
@@ -20,6 +21,15 @@ public abstract class ISubCommand {
 
     public String getName() {
         return name;
+    }
+
+    public ISubCommand setDescription(String description) {
+        this.description = description;
+        return this;
+    }
+
+    public String getDescription() {
+        return description;
     }
 
     public StringBuilder getAsStringBuilder(List<String> list) {

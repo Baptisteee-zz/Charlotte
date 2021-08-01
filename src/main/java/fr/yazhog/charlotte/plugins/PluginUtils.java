@@ -47,8 +47,8 @@ public class PluginUtils {
                 System.out.println("Error while loading " + name + ", aborting this plugin");
                 continue;
             }
-            bCharlotte.onEnable();
             charlotte.getPlugins().add(new Plugin(bCharlotte, name, file));
+            bCharlotte.onEnable();
             System.out.println(file.getName() + " loaded");
         }
     }
@@ -75,8 +75,8 @@ public class PluginUtils {
             System.out.println("Error while loading " + name + ", aborting this plugin");
             return;
         }
-        bCharlotte.onEnable();
         charlotte.getPlugins().add(new Plugin(bCharlotte, name, file));
+        bCharlotte.onEnable();
         System.out.println(file.getName() + " loaded");
     }
 

@@ -15,7 +15,7 @@ public class CommandListener implements EventListener {
 
     public CommandListener(Charlotte charlotte) {
         this.charlotte = charlotte;
-        this.commandHandler = new CommandHandler(charlotte);
+        this.commandHandler = charlotte.getCommandHandler();
     }
 
     @Override
